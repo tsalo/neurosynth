@@ -209,7 +209,7 @@ class Dataset(object):
         xyz = activations[['x', 'y', 'z']].values
         for s in spaces:
             if s != self.transformer.target:
-                inds = activations['space'] == s
+                inds = (activations['space'] == s).as_matrix()
                 xyz[inds] = self.transformer.apply(s, xyz[inds])
         activations[['x', 'y', 'z']] = xyz
 
