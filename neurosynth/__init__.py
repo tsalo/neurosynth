@@ -19,6 +19,11 @@ import sys
 import os
 
 from .version import __version__
+from .due import due, Doi
+
+due.cite(Doi('10.1038/nmeth.1635'),
+         description='Original Neurosynth paper',
+         version=__version__, path='neurosynth', cite_module=True)
 
 logger = logging.getLogger("neurosynth")
 

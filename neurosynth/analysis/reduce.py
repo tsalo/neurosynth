@@ -11,6 +11,8 @@ import pandas as pd
 import shutil
 from os.path import dirname, join
 
+from ..due import due, BibTeX
+
 logger = logging.getLogger('neurosynth.cluster')
 
 
@@ -173,6 +175,35 @@ def _get_top_words(model, feature_names, n_top_words=40):
     return topic_words
 
 
+@due.dcite(BibTeX("""@article{Blei:2003:LDA:944919.944937,
+                  author = {Blei, David M. and Ng, Andrew Y. and Jordan, Michael I.},
+                  title = {Latent Dirichlet Allocation},
+                  journal = {J. Mach. Learn. Res.},
+                  issue_date = {3/1/2003},
+                  volume = {3},
+                  month = mar,
+                  year = {2003},
+                  issn = {1532-4435},
+                  pages = {993--1022},
+                  numpages = {30},
+                  url = {http://dl.acm.org/citation.cfm?id=944919.944937},
+                  acmid = {944937},
+                  publisher = {JMLR.org},
+                  }"""),
+           description='Introduces LDA.')
+@due.dcite(BibTeX("""@unpublished{McCallumMALLET,
+                  added-at = {2010-05-16T09:00:27.000+0200},
+                  author = {McCallum, Andrew Kachites},
+                  biburl = {https://www.bibsonomy.org/bibtex/26dbb7b45a3a53997359a5e3c2677dc52/ans},
+                  interhash = {a41946adb992cd2c89158609adc0d83f},
+                  intrahash = {6dbb7b45a3a53997359a5e3c2677dc52},
+                  keywords = {mallet master toVerify toolkit tools topics},
+                  note = {http://mallet.cs.umass.edu},
+                  timestamp = {2011-03-22T23:51:36.000+0100},
+                  title = {MALLET: A Machine Learning for Language Toolkit},
+                  year = 2002
+                  }"""),
+           description='Citation for the MALLET toolbox used for LDA.')
 def run_lda(abstracts, n_topics=50, n_words=31, n_iters=1000, alpha=None,
             beta=0.001):
     """ Perform topic modeling using Latent Dirichlet Allocation with the

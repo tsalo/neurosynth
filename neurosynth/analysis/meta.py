@@ -8,6 +8,8 @@ from neurosynth.analysis import stats
 from os.path import join, exists
 from os import makedirs
 
+from ..due import due, Doi
+
 logger = logging.getLogger('neurosynth.meta')
 
 
@@ -53,7 +55,9 @@ def analyze_features(dataset, features=None, image_type='specificity_z',
     if output_dir is None:
         return result
 
-
+@due.dcite(Doi('10.1093/scan/nsm015'),
+           description='Introduces multilevel kernel density analysis '
+                       '(MKDA).')
 class MetaAnalysis(object):
 
     """ Meta-analysis of a Dataset. Currently contrasts two subsets of
@@ -63,7 +67,8 @@ class MetaAnalysis(object):
     list, and the contrast is then performed across these two groups.
     If a second optional second study list is provided (ids2), the Dataset
     is first constrained to the union of ids1 and ids2, and the standard
-    contrast is then performed."""
+    contrast is then performed.
+    """
 
     def __init__(self, dataset, ids, ids2=None, q=0.01, prior=0.5,
                  min_studies=1):

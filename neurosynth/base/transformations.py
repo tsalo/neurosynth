@@ -4,6 +4,8 @@ import numpy as np
 from numpy import linalg
 import logging
 
+from ..due import due, Doi
+
 logger = logging.getLogger('neurosynth.transformations')
 
 
@@ -31,6 +33,13 @@ def mat_to_xyz(foci, mat_dims=None, xyz_dims=None):
     return np.round_(result).astype(int)  # need to round indices to ints
 
 
+@due.dcite(Doi('10.1002/hbm.20345'),
+           description='Introduces the Lancaster MNI-to-Talairach transform, '
+                       'as well as its inverse, the Talairach-to-MNI '
+                       'transform.')
+@due.dcite(Doi('10.1016/j.neuroimage.2010.02.048'),
+           description='Validates the Lancaster MNI-to-Talairach and '
+                       'Talairach-to-MNI transforms.')
 def t88_to_mni():
     """ Convert Talairach to MNI coordinates using the Lancaster transform.
     Adapted from BrainMap scripts; see http://brainmap.org/icbm2tal/
